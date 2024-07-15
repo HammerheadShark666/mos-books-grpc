@@ -396,3 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/Microservice.Book.Grpc/Properties/launchSettings.json
+/Microservice.Book.Grpc/appsettings.Development.json
