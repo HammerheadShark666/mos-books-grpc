@@ -54,4 +54,4 @@ jobs:
           app-name: 'prod-ap-ms-order-book-grpc'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CA1C8E5859B140D093FBEEA177ABC20F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1C9D565D02AD4ACCA9EE1467B6858E89 }}
