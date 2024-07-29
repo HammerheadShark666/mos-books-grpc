@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 /Microservice.Book.Grpc/Properties/launchSettings.json
 /Microservice.Book.Grpc/appsettings.Development.json
+/Microservice.Book.Grpc/Properties/ServiceDependencies/prod-ap-ms-order-book-grpc - Zip Deploy/profile.arm.json
