@@ -11,16 +11,16 @@ builder.Configuration
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
     .AddEnvironmentVariables();
 
-builder.WebHost.ConfigureKestrel(options =>
-{ 
-    //options.Listen(IPAddress.Loopback, 8585, configure => configure.UseHttps());
-    //options.Listen(IPAddress.Loopback, 8585, configure => configure.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2);
-    options.ListenAnyIP(8080);
-    options.ListenAnyIP(8585, listenOptions =>
-    {
-        listenOptions.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2;
-    }); 
-});
+//builder.WebHost.ConfigureKestrel(options =>
+//{ 
+//    //options.Listen(IPAddress.Loopback, 8585, configure => configure.UseHttps());
+//    //options.Listen(IPAddress.Loopback, 8585, configure => configure.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2);
+//    options.ListenAnyIP(8080);
+//    options.ListenAnyIP(8585, listenOptions =>
+//    {
+//        listenOptions.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2;
+//    }); 
+//});
 
 builder.Services.ConfigureGrpc();
 builder.Services.AddEndpointsApiExplorer();
