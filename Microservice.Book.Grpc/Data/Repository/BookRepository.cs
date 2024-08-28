@@ -1,14 +1,14 @@
-﻿using Microservice.Book.Gprc.Data.Contexts;
-using Microservice.Book.Gprc.Data.Repository.Interfaces;
+﻿using Microservice.Book.Grpc.Data.Context;
+using Microservice.Book.Grpc.Data.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Microservice.Book.Gprc.Data.Repository;
+namespace Microservice.Book.Grpc.Data.Repository;
 
 public class BookRepository(IDbContextFactory<BookDbContext> dbContextFactory) : IBookRepository
-{    
+{
     public IDbContextFactory<BookDbContext> _dbContextFactory { get; set; } = dbContextFactory;
 
-    public async Task<Grpc.Domain.Book> ByIdAsync(Guid id)
+    public async Task<Domain.Book> ByIdAsync(Guid id)
     {
         await using var db = await _dbContextFactory.CreateDbContextAsync();
         return await db.Books
@@ -18,5 +18,5 @@ public class BookRepository(IDbContextFactory<BookDbContext> dbContextFactory) :
                         .Include(e => e.Series)
                         .Include(e => e.DiscountType)
                         .SingleOrDefaultAsync();
-    } 
+    }
 }

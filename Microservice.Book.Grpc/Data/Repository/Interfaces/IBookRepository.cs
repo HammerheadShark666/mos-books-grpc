@@ -1,6 +1,6 @@
-﻿namespace Microservice.Book.Gprc.Data.Repository.Interfaces;
+﻿namespace Microservice.Book.Grpc.Data.Repository.Interfaces;
 
 public interface IBookRepository
-{ 
-    Task<Grpc.Domain.Book> ByIdAsync(Guid id);  
+{
+    Task<Domain.Book> ByIdAsync(Guid id);
 }

@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace Microservice.Book.Api.Address.Api.Extensions;
+namespace Microservice.Book.Grpc.Extensions;
 
 public static class JwtExtensions
-{  
+{
     public static void AddJwtAuthentication(this IServiceCollection services)
     {
         services.AddAuthentication(optiones =>
