@@ -1,10 +1,12 @@
-﻿namespace Microservice.Book.Grpc.Extensions;
+﻿using Microservice.Book.Grpc.Service;
+
+namespace Microservice.Book.Grpc.Extensions;
 
 public static class AppExtensions
 {
-    public static void ConfigureGprc(this WebApplication app)
+    public static void ConfigureGrpc(this WebApplication webApplication)
     {
-        app.MapGrpcService<BookService>();
-        app.MapGrpcReflectionService();
+        webApplication.MapGrpcService<BookService>();
+        webApplication.MapGrpcReflectionService();
     }
 }

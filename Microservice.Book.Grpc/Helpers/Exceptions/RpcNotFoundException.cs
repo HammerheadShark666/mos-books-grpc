@@ -2,9 +2,6 @@
 
 namespace Microservice.Book.Grpc.Helpers.Exceptions;
 
-public class RpcNotFoundException : RpcException
+public class RpcNotFoundException(Status status) : RpcException(status)
 {
-    public RpcNotFoundException(Status status) : base(status)
-    {
-    }
 }

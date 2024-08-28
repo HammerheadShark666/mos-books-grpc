@@ -1,32 +1,30 @@
 ﻿using Grpc.Core;
-using Microservice.Book.Gprc.Data.Repository.Interfaces;
+using Microservice.Book.Grpc.Data.Repository.Interfaces;
 using Microservice.Book.Grpc.Protos;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Microservice.Book.Grpc;
+namespace Microservice.Book.Grpc.Service;
 
-public class BookService : BookGrpc.BookGrpcBase
-{ 
-    private readonly IBookRepository _bookRepository;
-
-    public BookService(IBookRepository bookRepository)
-    {
-        _bookRepository = bookRepository;
-    }
+public class BookService(IBookRepository bookRepository) : BookGrpc.BookGrpcBase
+{
+    private readonly IBookRepository _bookRepository = bookRepository;
 
     [Authorize]
     public override async Task<BooksResponse> GetBooks(ListBookRequest request, ServerCallContext context)
-    {  
-        BooksResponse books = new BooksResponse();
+    {
+        BooksResponse books = new();
 
         foreach (var bookRequest in request.BookRequests)
         {
-            var book = await _bookRepository.ByIdAsync(new Guid(bookRequest.Id));  
-            if(book != null)
+            var book = await _bookRepository.ByIdAsync(new Guid(bookRequest.Id));
+            if (book != null)
             {
-                books.BookResponses.Add(new BookResponse() { Id = bookRequest.Id, 
-                                                             Name = book.Title,
-                                                             UnitPrice = book.Price.ToString() });
+                books.BookResponses.Add(new BookResponse()
+                {
+                    Id = bookRequest.Id,
+                    Name = book.Title,
+                    UnitPrice = book.Price.ToString()
+                });
             }
             else
             {
@@ -34,6 +32,6 @@ public class BookService : BookGrpc.BookGrpcBase
             }
         }
 
-        return books; 
+        return books;
     }
 }
