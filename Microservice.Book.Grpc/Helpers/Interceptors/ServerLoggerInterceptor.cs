@@ -20,12 +20,12 @@ public class ServerLoggerInterceptor(ILogger<ServerLoggerInterceptor> logger) : 
         }
         catch (RpcNotFoundException)
         {
-            _logger.LogError($"Error thrown by {context.Method}.");
+            _logger.LogError("Error thrown by {context.Method}.", context.Method);
             throw;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error thrown by {context.Method}.");
+            _logger.LogError(ex, "Error thrown by {context.Method}.", context.Method);
             throw new RpcException(new Status(StatusCode.Internal, ex.ToString()));
         }
     }
@@ -35,7 +35,7 @@ public class ServerLoggerInterceptor(ILogger<ServerLoggerInterceptor> logger) : 
         switch (context.Method)
         {
             case "/Book.BookGrpc/GetBooks":
-                _logger.LogInformation($"Call to Method: {context.Method}. Request: {request}");
+                _logger.LogInformation("Call to Method: {context.Method}. Request: {request}", context.Method, request);
                 break;
         }
     }
