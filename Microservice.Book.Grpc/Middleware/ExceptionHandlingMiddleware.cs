@@ -27,31 +27,13 @@ internal sealed class ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddl
         httpContext.Response.ContentType = "application/json";
         httpContext.Response.StatusCode = statusCode;
 
-        switch (statusCode)
+        var response = new
         {
-            case 404:
-                {
-                    var response = new
-                    {
-                        status = statusCode,
-                        detail = exception.Message
-                    };
+            status = statusCode,
+            detail = ("Book-Grpc: {exception.Message}", exception.Message)
+        };
 
-                    await httpContext.Response.WriteAsync(JsonSerializer.Serialize(response));
-                    break;
-                }
-            default:
-                {
-                    var response = new
-                    {
-                        status = statusCode,
-                        detail = exception.Message
-                    };
-
-                    await httpContext.Response.WriteAsync(JsonSerializer.Serialize(response));
-                    break;
-                }
-        }
+        await httpContext.Response.WriteAsync(JsonSerializer.Serialize(response));
     }
 
     private static int GetStatusCode(Exception exception) =>
