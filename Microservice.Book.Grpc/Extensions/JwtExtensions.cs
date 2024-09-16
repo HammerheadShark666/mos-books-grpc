@@ -19,9 +19,9 @@ public static class JwtExtensions
         {
             o.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidAudience = EnvironmentVariablesHelper.JwtAudience,
-                ValidIssuer = EnvironmentVariablesHelper.JwtIssuer,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(EnvironmentVariablesHelper.JwtSymmetricSecurityKey)),
+                ValidAudience = EnvironmentVariables.JwtAudience,
+                ValidIssuer = EnvironmentVariables.JwtIssuer,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(EnvironmentVariables.JwtSymmetricSecurityKey)),
                 ValidateIssuer = true,
                 ValidateAudience = true,
                 ValidateIssuerSigningKey = true,
